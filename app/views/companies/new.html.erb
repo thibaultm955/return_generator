@@ -1,0 +1,24 @@
+<h1> Create a Company </h1>
+     <%= simple_form_for @company do |f| %>
+        <%= f.input :name,
+                    required: true,
+                    autofocus: true,
+                    placeholder: "Johnson Pharmaceuticals" %>
+        <%= f.input :adress,
+                    required: true,
+                    autofocus: true,
+                    placeholder: "Rue des Colonies" %>
+        <%= f.input :postal_code,
+                    required: true,
+                    autofocus: true,
+                    placeholder: "1200" %>
+        <%= f.input :city,
+                    required: true,
+                    autofocus: true,
+                    placeholder: "Brussels" %>
+        <%= f.input :jurisdiction,
+                    collection: ["Belgium", "France", "Tchad"],
+                    required: true,
+                    autofocus: true %>
+        <%= f.submit "Save", class: "btn btn-primary" %>
+    <% end %>
