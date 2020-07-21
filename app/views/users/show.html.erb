@@ -1,0 +1,7 @@
+<h1> Hello <%= current_user.first_name%> </h1>
+
+<% if current_user.company_id == nil %>
+    <a href="<%=new_company_path%>"> Create a company </a>
+<% else%>
+    <a href=""> See my Company </a>
+<%end%>
