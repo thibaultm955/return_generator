@@ -1,0 +1,29 @@
+<h1> Your declarations </h1>
+<%i=1%>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Entity Name</th>
+      <th scope="col">Jurisdiction</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%@declarations.each do |declaration| %>
+    <tr>
+      <th scope="row"><%=i%></th>
+      <td><%=declaration.entity.name%></td>
+      <td><%=declaration.entity.jurisdiction%></td>
+      <td><%=declaration.start_date%></td>
+      <td><%=declaration.end_date%></td>
+    </tr>
+    <%i += 1%>
+    <%end%>
+  </tbody>
+</table>
+
+<a href="<%=new_company_declaration_path%>">Create a new declaration </a>
+
+

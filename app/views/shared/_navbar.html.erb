@@ -15,7 +15,7 @@
         <%if current_user.company_id != nil %>
           <%= link_to "My Company", company_path(current_user.company), class: "dropdown-item" %>
         <%end%>
-        <%= link_to "My Declarations", "#", class: "dropdown-item"%>
+        <%= link_to "My Declarations", company_declarations_path(current_user.company), class: "dropdown-item"%>
         
               
         <li class="nav-item dropdown">
