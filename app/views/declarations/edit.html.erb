@@ -1,11 +1,7 @@
-<h1> Create a new Declaration </h1>
+<h1> Update your Declaration for <%=@declaration.entity.name%>% </h1>
 
      <%= simple_form_for([@company, @declaration]) do |f| %>
-        <%= f.input :box_name, 
-        label: "Entity_Name",
-        collection: @entities_name,
-        required: true,
-        autofocus: true %>
+
         <%= f.input :start_date,
         as: :string,
         required: true,
