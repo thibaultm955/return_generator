@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   end
   
   resources :companies do
-    resources :entities
     resources :declarations
+    resources :entities do 
+      resources :declarations
+    end
   end
 
 end

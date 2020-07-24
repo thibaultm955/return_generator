@@ -19,12 +19,15 @@
         </thead>
         <tbody>
             <% @entities.each do |entity| %>
-                <tr>
+                <tr onclick="location.href='../companies/<%=current_user.company_id%>/entities/<%=entity.id%>'">
                 <th class="text-center" scope="row"><%=i%></th>
                 <td class="text-center"><%=entity.name%></td>
                 <td class="text-center"><%=entity.jurisdiction%></td>
                 <td class="text-center"><%=entity.vat_number%></td>
-                 <td><a href="./<%=@company.id%>/entities/<%=entity.id%>/edit"> <i class="fas fa-edit"></i> </a>
+                 <td>
+                 <a class="btn btn-light" href='../companies/<%=current_user.company_id%>/entities/<%=entity.id%>'> Open </a>
+                 <a class="btn btn-primary" href='"./<%=@company.id%>/entities/<%=entity.id%>/edit'> Edit </a>
+                <%#<a href="./<%=@company.id%><%#/entities/<%=entity.id%><%#/edit"> <i class="fas fa-edit"></i> </a>%>
                 
                  <%= button_to "Delete the Entity", { action: "destroy", id: entity.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"  %>
                     
