@@ -8,6 +8,7 @@
       <th scope="col">Jurisdiction</th>
       <th scope="col">Start Date</th>
       <th scope="col">End Date</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -18,6 +19,11 @@
       <td><%=declaration.entity.jurisdiction%></td>
       <td><%=declaration.start_date%></td>
       <td><%=declaration.end_date%></td>
+      <td><a href="./declarations/<%=declaration.id%>/edit"> <i class="fas fa-edit"></i> </a>
+                
+        <%= button_to "Delete the Declaration", { action: "destroy", id: declaration.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"  %>
+                    
+      </td> 
     </tr>
     <%i += 1%>
     <%end%>
