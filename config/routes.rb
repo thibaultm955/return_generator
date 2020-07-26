@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
   
   resources :companies do
+    resources :assigned_tax_codes
     resources :declarations
     resources :entities do 
       resources :declarations

@@ -1,0 +1,32 @@
+<h1>Tax Codes for <%=@company.name%></h1>
+
+
+<a class="btn btn-light" href="./tax_codes/new">New Tax Code</a> 
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Entity Name</th>
+      <th scope="col">Jurisdiction</th>
+      <th scope="col">Tax Code</th>
+      <th scope="col">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%i = 1%>
+    <%@entity_assigned_tax_codes.each do |entity, tax_codes|%>
+        <%tax_codes.each do |tax_code| %>
+            <tr>
+            <th scope="row"><%=i%></th>
+            <td><%=entity.name%></td>
+            <td><%=tax_code.jurisdiction%></td>
+            <td><%=tax_code.tax_code%></td>
+            <td><%=tax_code.name%></td>
+            </tr>
+            <%i+=1%>
+        <%end%>
+    <%end%>
+  </tbody>
+</table>

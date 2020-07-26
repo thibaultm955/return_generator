@@ -1,0 +1,44 @@
+<h1>Tax Codes for <%=@company.name%></h1>
+
+
+<a class="btn btn-light" href="./assigned_tax_codes/new">New Tax Code</a> 
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Entity Name</th>
+      <th scope="col">Jurisdiction</th>
+      <th scope="col">Tax Code Name</th>
+      <th scope="col">Tax Code Side</th>
+      <th scope="col">Tax Code Localization</th>
+      <th scope="col">Tax Code Rate</th>
+      <th scope="col">Tax Code Type</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%i = 1%>
+    <%@entity_assigned_tax_codes.each do |entity, tax_codes|%>
+        <%tax_codes.each do |tax_code| %>
+            <tr>
+            <th scope="row"><%=i%></th>
+            <td><%=entity.name%></td>
+            <td><%=entity.jurisdiction%></td>
+            <td><%=tax_code.name%></td>
+            <td><%=tax_code.side%></td>
+            <td><%=tax_code.localization%></td>
+            <td><%=tax_code.rate%></td>
+            <td><%=tax_code.type_transaction%></td>
+            <td>
+<%#               <a class="btn btn-light" href="./assigned_tax_codes/<%=tax_code.id%> <%#%"> Open </a> %> 
+              <a class="btn btn-primary" href="./assigned_tax_codes/<%=tax_code.id%>/edit"> Edit </a>  
+              <%= button_to "Delete the Declaration", { action: "destroy", id: tax_code.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"  %>
+            </td> 
+            </tr>
+            <%i+=1%>
+        <%end%>
+    <%end%>
+  </tbody>
+</table>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_08_174026) do
+ActiveRecord::Schema.define(version: 2020_07_26_152848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,9 +19,12 @@ ActiveRecord::Schema.define(version: 2020_07_08_174026) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "entity_id"
-    t.bigint "tax_code_id"
+    t.string "name"
+    t.string "side"
+    t.string "localization"
+    t.string "rate"
+    t.string "type_transaction"
     t.index ["entity_id"], name: "index_assigned_tax_codes_on_entity_id"
-    t.index ["tax_code_id"], name: "index_assigned_tax_codes_on_tax_code_id"
   end
 
   create_table "checks", force: :cascade do |t|
@@ -118,7 +121,6 @@ ActiveRecord::Schema.define(version: 2020_07_08_174026) do
   end
 
   add_foreign_key "assigned_tax_codes", "entities"
-  add_foreign_key "assigned_tax_codes", "tax_codes"
   add_foreign_key "declaration_checks", "checks"
   add_foreign_key "declaration_checks", "transactions"
   add_foreign_key "declarations", "entities"

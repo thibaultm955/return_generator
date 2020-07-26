@@ -12,7 +12,9 @@
 
 <ul>
     <%@declarations.each do |declaration|%>
-        <li><a href="./<%=@entity.id%>/entities/<%=declaration.entity.id%>/declarations/<%=declaration.id%>"> <%=declaration.start_date%> - <%=declaration.end_date%> - <%=declaration.type_of_project%></a></li>
+        <li><a href="./<%=declaration.entity.id%>/declarations/<%=declaration.id%>"> <%=declaration.start_date%> - <%=declaration.end_date%> - <%=declaration.type_of_project%></a></li>
     <%end%>
 </ul>
+
+<a class="btn btn-primary" href="./<%=@entity.id%>/edit"> Edit </a>
 
