@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_26_152848) do
+ActiveRecord::Schema.define(version: 2020_07_28_192202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,17 +91,18 @@ ActiveRecord::Schema.define(version: 2020_07_26_152848) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.decimal "gross_amount"
-    t.decimal "net_amount"
-    t.decimal "vat_amount"
+    t.float "gross_amount"
+    t.float "net_amount"
+    t.float "vat_amount"
     t.string "business_partner_vat_number"
     t.string "business_partner_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "tax_code_id"
     t.bigint "declaration_id"
+    t.bigint "assigned_tax_code_id"
+    t.date "transaction_date"
+    t.index ["assigned_tax_code_id"], name: "index_transactions_on_assigned_tax_code_id"
     t.index ["declaration_id"], name: "index_transactions_on_declaration_id"
-    t.index ["tax_code_id"], name: "index_transactions_on_tax_code_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -125,7 +126,7 @@ ActiveRecord::Schema.define(version: 2020_07_26_152848) do
   add_foreign_key "declaration_checks", "transactions"
   add_foreign_key "declarations", "entities"
   add_foreign_key "entities", "companies"
+  add_foreign_key "transactions", "assigned_tax_codes"
   add_foreign_key "transactions", "declarations"
-  add_foreign_key "transactions", "tax_codes"
   add_foreign_key "users", "companies"
 end

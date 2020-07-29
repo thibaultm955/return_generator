@@ -51,8 +51,11 @@ class DeclarationsController < ApplicationController
     def show
         @declaration = Declaration.find(params[:id])
         @entity = @declaration.entity
+        @transactions = @declaration.transactions
     end
 
+
+    
     private
     
     def params_declaration

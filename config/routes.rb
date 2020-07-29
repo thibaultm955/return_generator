@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   
   resources :companies do
     resources :assigned_tax_codes
-    resources :declarations
+    resources :declarations do
+      resources :transactions do
+        resources :assigned_tax_codes
+      end
+    end
     resources :entities do 
       resources :declarations
     end
