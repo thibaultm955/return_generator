@@ -1,0 +1,44 @@
+<h1> New declaration for <%=@entity.name%> </h1>
+
+     <%= simple_form_for [@company, @declaration, @transaction] do |f| %>
+         <%= f.input :assigned_tax_code_id,
+        label: "Tax Code",
+        collection: @assigned_tax_codes,
+        required: true,
+        autofocus: true %>
+        <%= f.input :business_partner_name, 
+        label: "Business Partner Name",
+        as: :string,
+        required: true,
+        autofocus: true %>
+        <%= f.input :business_partner_vat_number, 
+        label: "Business Partner Vat Number",
+        as: :string,
+        required: true,
+        autofocus: true %>
+        <%= f.input :transaction_date,
+        as: :string,
+        required: true,
+        autofocus: true,
+        input_html: {class: "datepicker"} %>
+        <%= f.input :gross_amount,
+        label: "Gross Amount",
+        as: :float,
+        required: true,
+        autofocus: true%>
+        <%= f.input :net_amount,
+        label: "Net Amount",
+        as: :float,
+        required: true,
+        autofocus: true%>
+        <%= f.input :vat_amount,
+        label: "VAT Amount",
+        as: :float,
+        required: true,
+        autofocus: true%>
+
+     
+
+        <%= f.submit "Save", class: "btn btn-primary" %>
+    <% end %>
+

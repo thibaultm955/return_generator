@@ -6,6 +6,7 @@
       <th scope="col">#</th>
       <th scope="col">Entity Name</th>
       <th scope="col">Jurisdiction</th>
+      <th scope="col">Project Type</th>
       <th scope="col">Start Date</th>
       <th scope="col">End Date</th>
       <th scope="col">Action</th>
@@ -13,16 +14,17 @@
   </thead>
   <tbody>
   <%@declarations.each do |declaration| %>
-    <tr>
+    <tr onclick="location.href='./declarations/<%=declaration.id%>'">
       <th scope="row"><%=i%></th>
       <td><%=declaration.entity.name%></td>
       <td><%=declaration.entity.jurisdiction%></td>
+      <td><%=declaration.type_of_project%></td>
       <td><%=declaration.start_date%></td>
       <td><%=declaration.end_date%></td>
-      <td><a href="./declarations/<%=declaration.id%>/edit"> <i class="fas fa-edit"></i> </a>
-                
+      <td>
+        <a class="btn btn-light" href="./declarations/<%=declaration.id%>"> Open </a>
+        <a class="btn btn-primary" href="./declarations/<%=declaration.id%>/edit"> Edit </a>  
         <%= button_to "Delete the Declaration", { action: "destroy", id: declaration.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"  %>
-                    
       </td> 
     </tr>
     <%i += 1%>

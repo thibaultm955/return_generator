@@ -48,6 +48,14 @@ class DeclarationsController < ApplicationController
         redirect_to company_declarations_path(current_user.company_id)
     end
 
+    def show
+        @declaration = Declaration.find(params[:id])
+        @entity = @declaration.entity
+        @transactions = @declaration.transactions
+    end
+
+
+    
     private
     
     def params_declaration

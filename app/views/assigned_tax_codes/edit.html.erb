@@ -1,0 +1,34 @@
+
+
+
+     <%= simple_form_for [@company, @assigned_tax_code] do |f| %>
+        <%= f.input :name, 
+        label: "Tax Code Name",
+        as: :string,
+        required: true,
+        autofocus: true %>
+        <%= f.input :side,
+        label: "Side of Transaction",
+        collection: ["Purchase", "Sale"],
+        required: true,
+        autofocus: true %>
+        <%= f.input :localization,
+        label: "Localization Transaction",
+        collection: ["Domestic", "Intra-Community", "Foreign"],
+        required: true,
+        autofocus: true %>
+         <%= f.input :rate,
+        label: "Rate of Transaction",
+        collection: ["Standard", "Intermediate", "Reduced", "Zero"],
+        required: true,
+        autofocus: true %>
+        <%= f.input :type_transaction,
+        label: "Type of Transaction",
+        collection: ["Goods", "Services"],
+        required: true,
+        autofocus: true %>
+        
+
+
+        <%= f.submit "Save", class: "btn btn-primary" %>
+    <% end %>

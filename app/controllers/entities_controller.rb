@@ -33,6 +33,11 @@ class EntitiesController < ApplicationController
         @entity = Entity.find(params[:id])
         redirect_to company_path(@company.id)
     end
+    
+    def show
+        @entity = Entity.find(params[:id])
+        @declarations = @entity.declarations
+    end
 
     private
 
