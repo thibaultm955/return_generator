@@ -1,4 +1,10 @@
 class TransactionsController < ApplicationController
+
+    def index
+        @declaration = Declaration.find(params[:declaration_id])
+        @transactions = @declaration.transactions
+    end
+
     def new
         @declaration = Declaration.find(params[:declaration_id])
         @entity = @declaration.entity
@@ -18,7 +24,7 @@ class TransactionsController < ApplicationController
         @transaction.declaration = @declaration
         @transaction.assigned_tax_code = @assigned_tax_code
         if @transaction.save
-            redirect_to company_declaration_path(@company, @declaration)
+            redirect_to company_declaration_transactions_path(@company, @declaration)
         else
             render :new
         end
@@ -32,7 +38,7 @@ class TransactionsController < ApplicationController
             @company = current_user.company
             @transaction = Transaction.find(params[:id])
             @transaction.destroy
-            redirect_to company_declaration_path(@company, @declaration)
+            redirect_to company_declaration_transactions_path(@company, @declaration)
         else
 
         end
@@ -55,7 +61,15 @@ class TransactionsController < ApplicationController
         @transaction.update(business_partner_name: params_transaction[:business_partner_name], business_partner_vat_number: params_transaction[:business_partner_vat_number], transaction_date: params_transaction[:transaction_date], gross_amount: params_transaction[:gross_amount], net_amount: params_transaction[:net_amount], vat_amount: params_transaction[:vat_amount])
         @declaration = Declaration.find(params[:declaration_id])
         @company = current_user.company
-        redirect_to company_declaration_path(@company, @declaration)
+        redirect_to company_declaration_transactions_path(@company, @declaration)
+    end
+
+    def destroy
+        @declaration = Declaration.find(params[:declaration_id])
+        @company = current_user.company
+        @transaction = Transaction.find(params[:id])
+        @transaction.destroy
+        redirect_to company_declaration_transactions_path(@company, @declaration)
     end
 
     private
