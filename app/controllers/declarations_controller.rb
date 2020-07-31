@@ -2,7 +2,7 @@ class DeclarationsController < ApplicationController
     def index
         @company = Company.find(current_user.id)
         @entities = Company.find(current_user.company_id).entities
-        @declarations = Declaration.where(entity_id: @entities.ids).order("start_date asc")
+        @declarations = Declaration.where(entity_id: @entities.ids).order("start_date asc")[0..9]
     end
 
     def new
