@@ -21,6 +21,8 @@ class DeclarationsController < ApplicationController
         last_day_month = Time.days_in_month(params_declaration[:end_date][5..6].to_i, params_declaration[:end_date][0..3].to_i)
         @declaration = Declaration.new(start_date: (params_declaration[:start_date][0..6] + "-01"), end_date: (params_declaration[:end_date][0..6] + "-"+last_day_month.to_s), type_of_project: params_declaration[:type_of_project])
         @declaration.entity = @entity
+        @due_date = DueDate.where(start_date: (params_declaration[:start_date][0..6] + "-01"), end_date: (params_declaration[:end_date][0..6] + "-"+last_day_month.to_s), type_of_project: params_declaration[:type_of_project])[0]
+        @declaration.due_date = @due_date
         if @declaration.save
             redirect_to company_declarations_path(current_user.company_id)
         else

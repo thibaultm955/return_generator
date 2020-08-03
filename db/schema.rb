@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_28_192202) do
+ActiveRecord::Schema.define(version: 2020_07_31_152930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,7 +65,20 @@ ActiveRecord::Schema.define(version: 2020_07_28_192202) do
     t.float "amount"
     t.bigint "entity_id"
     t.string "type_of_project"
+    t.bigint "due_date_id"
+    t.index ["due_date_id"], name: "index_declarations_on_due_date_id"
     t.index ["entity_id"], name: "index_declarations_on_entity_id"
+  end
+
+  create_table "due_dates", force: :cascade do |t|
+    t.string "jurisdiction"
+    t.string "type_of_project"
+    t.date "start_date"
+    t.date "end_date"
+    t.date "statutory_due_date"
+    t.date "payment_due_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "entities", force: :cascade do |t|
@@ -124,6 +137,7 @@ ActiveRecord::Schema.define(version: 2020_07_28_192202) do
   add_foreign_key "assigned_tax_codes", "entities"
   add_foreign_key "declaration_checks", "checks"
   add_foreign_key "declaration_checks", "transactions"
+  add_foreign_key "declarations", "due_dates"
   add_foreign_key "declarations", "entities"
   add_foreign_key "entities", "companies"
   add_foreign_key "transactions", "assigned_tax_codes"
